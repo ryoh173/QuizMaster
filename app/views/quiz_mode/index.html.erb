@@ -1,0 +1,7 @@
+<h1>QuizMode</h1>
+<%= @question.content %>
+
+<%= form_tag({controller: :questions, action: :answer, id: @question.id},{}) do %>
+  <%= text_field_tag :answer %>
+  <%= submit_tag '回答' %>
+<% end %>

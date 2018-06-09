@@ -1,3 +1,9 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  get 'quiz_mode/index'
+  get 'top/index'
+  resources :questions do
+    post :answer, on: :member
+  end
+
+  root 'top#index'
 end
