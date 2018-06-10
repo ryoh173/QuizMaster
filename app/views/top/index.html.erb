@@ -1,3 +1,9 @@
-<h1>クイズアプリ</h1>
-<%= link_to 'クイズ一覧', questions_path %>
-<%= link_to 'クイズで遊ぶ', quiz_mode_index_path %>
+<div class="container">
+  <div class="card">
+    <div class="card-body">
+      <h1 class="card-title text-center">QuizMaster</h1>
+      <%= link_to 'クイズ一覧', questions_path, class: 'btn btn-outline-primary btn-block' %>
+      <%= link_to 'クイズで遊ぶ', quiz_mode_index_path, class: 'btn btn-outline-info btn-block' %>
+    </div>
+  </div>
+</div>

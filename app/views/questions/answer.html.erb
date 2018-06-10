@@ -1,3 +1,10 @@
-<%= @result.inspect %>
-<%= link_to '次の問題', quiz_mode_index_path(total: @total, correct: @correct) %>
-<%= link_to 'トップに戻る', root_path %>
+<div class="container">
+  <div class="card">
+    <div class="card-body">
+      <h1 class="card-title text-center"><%= @correct_incorrect %></h1>
+      <%= link_to '次の問題', quiz_mode_index_path(total: @total, correct: @correct), class: 'btn btn-outline-success btn-block' %>
+      <%= link_to 'トップに戻る', root_path, class: 'btn btn-outline-info btn-block' %>
+    </div>
+  </div>
+
+</div>

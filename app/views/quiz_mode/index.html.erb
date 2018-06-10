@@ -1,11 +1,19 @@
-<h1>QuizMode</h1>
-<%= @question.content %>
+<div class="container">
+  <h1>QuizMode</h1>
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title"><%= @question.content %></h5>
 
-<%= form_tag({controller: :questions, action: :answer, id: @question.id},{}) do %>
-  <%= hidden_field_tag :total, params[:total] %>
-  <%= hidden_field_tag :correct, params[:correct] %>
-  <%= text_field_tag :answer %>
-  <%= submit_tag '回答' %>
-<% end %>
-
-<%= "#{@total}問中#{@correct}問正解" %>
+      <%= form_tag({controller: :questions, action: :answer, id: @question.id},{}) do %>
+        <%= hidden_field_tag :total, params[:total] %>
+        <%= hidden_field_tag :correct, params[:correct] %>
+        <%= text_field_tag :answer, '', class: 'form-control' %>
+        <br>
+        <%= submit_tag '回答', class: 'btn btn-outline-primary btn-block' %>
+      <% end %>
+    </div>
+  </div>
+  <br>
+  <h5><%= "#{@correct}/#{@total}問正解" %></h5>
+  <%= link_to 'トップに戻る', root_path, class: 'btn btn-outline-info btn-block' %>
+</div>

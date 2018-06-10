@@ -1,14 +1,18 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+  <p id="notice"><%= notice %></p>
+  <div class="card">
+    <div class="card-body">
+      <p>
+        <strong>Content:</strong>
+        <%= @question.content %>
+      </p>
 
-<p>
-  <strong>Content:</strong>
-  <%= @question.content %>
-</p>
-
-<p>
-  <strong>Answer:</strong>
-  <%= @question.answer %>
-</p>
-
-<%= link_to 'Edit', edit_question_path(@question) %> |
-<%= link_to 'Back', questions_path %>
+      <p>
+        <strong>Answer:</strong>
+        <%= @question.answer %>
+      </p>
+    </div>
+  </div>
+  <%= link_to '編集', edit_question_path(@question), class: 'btn btn-outline-primary' %>
+  <%= link_to '戻る', questions_path, class: 'btn btn-outline-info' %>
+</div>
