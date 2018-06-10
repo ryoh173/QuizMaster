@@ -20,7 +20,7 @@ class QuestionsControllerTest < ActionDispatch::IntegrationTest
       post questions_url, params: { question: { answer: @question.answer, content: @question.content } }
     end
 
-    assert_redirected_to question_url(Question.last)
+    assert_redirected_to questions_url
   end
 
   test "should show question" do
@@ -35,7 +35,7 @@ class QuestionsControllerTest < ActionDispatch::IntegrationTest
 
   test "should update question" do
     patch question_url(@question), params: { question: { answer: @question.answer, content: @question.content } }
-    assert_redirected_to question_url(@question)
+    assert_redirected_to questions_url
   end
 
   test "should destroy question" do
