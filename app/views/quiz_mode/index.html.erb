@@ -2,6 +2,10 @@
 <%= @question.content %>
 
 <%= form_tag({controller: :questions, action: :answer, id: @question.id},{}) do %>
+  <%= hidden_field_tag :total, params[:total] %>
+  <%= hidden_field_tag :correct, params[:correct] %>
   <%= text_field_tag :answer %>
   <%= submit_tag '回答' %>
 <% end %>
+
+<%= "#{@total}問中#{@correct}問正解" %>

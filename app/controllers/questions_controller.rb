@@ -61,11 +61,12 @@ class QuestionsController < ApplicationController
     end
   end
 
-  # 入力された答えの正誤を@resultとして渡す
+  # 入力された答えの正誤,出題総数,正解数を渡す
   def answer
-    @question = Question.find(params[:id].to_i)
-    @answer = params[:answer]
-    @result = @question.is_correct?(@answer, params[:id].to_i)
+    question = Question.find(params[:id].to_i)
+    answer = params[:answer]
+    @result = question.is_correct?(answer, params[:id].to_i)
+    @total, @correct = set_total_correct(@result, @total, @correct)
   end
 
   private
@@ -76,6 +77,16 @@ class QuestionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def question_params
-      params.require(:question).permit(:content, :answer)
+      params.require(:question).permit(:content, :answer, :total, :correct)
+    end
+
+    def set_total_correct(result, total, correct)
+      total = params[:total].to_i + 1
+      if result
+        correct = params[:correct].to_i + 1
+      else
+        correct = params[:correct].to_i
+      end
+      return total, correct
     end
 end
