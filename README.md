@@ -1,24 +1,18 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## 環境
 
-Things you may want to cover:
+- ruby 2.5.1
+- rails 5.2.0
 
-* Ruby version
+## 環境構築
 
-* System dependencies
+ **前提: rbenv等で `ruby 2.5.1`を導入しておいてください**
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- `cd 作業フォルダ`
+- `git clone git@github.com:ryoh173/QuizMaster.git`
+- `cd QuizMaster`
+- `bundle install --path vendor/bundle`
+- `bundle exec rails db:create`
+- `bundle exec rails db:migrate`
+- `bundle exec rails s`
