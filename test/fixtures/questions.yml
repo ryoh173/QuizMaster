@@ -1,9 +1,5 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  content: MyString
-  answer: MyString
-
-two:
-  content: MyString
-  answer: MyString
+  content: 'アルファベットの数は？'
+  answer: '26'

@@ -2,7 +2,7 @@ require "application_system_test_case"
 
 class QuestionsTest < ApplicationSystemTestCase
   setup do
-    @question = questions(:one)
+    @question_1 = questions(:one)
   end
 
   test "visiting the index" do
@@ -12,34 +12,46 @@ class QuestionsTest < ApplicationSystemTestCase
 
   test "creating a Question" do
     visit questions_url
-    click_on "New Question"
-
-    fill_in "Answer", with: @question.answer
-    fill_in "Content", with: @question.content
-    click_on "Create Question"
-
-    assert_text "Question was successfully created"
-    click_on "Back"
+    click_on "クイズ作成"
+    fill_in "question_content", with: '問題2'
+    fill_in "question_answer", with: '回答2'
+    click_on "登録", match: :first
+    assert_text "Quizを作成しました"
+    # 2行目に作成されたクイズの情報が表示されていることを確認
+    within :css, 'table tbody tr:nth-child(2)' do
+      assert_selector 'td', text: '問題2'
+      assert_selector 'td', text: '回答2'
+      assert_selector 'td', text: '詳細'
+      assert_selector 'td', text: '編集'
+      assert_selector 'td', text: '削除'
+    end
   end
 
   test "updating a Question" do
     visit questions_url
-    click_on "Edit", match: :first
-
-    fill_in "Answer", with: @question.answer
-    fill_in "Content", with: @question.content
-    click_on "Update Question"
-
-    assert_text "Question was successfully updated"
-    click_on "Back"
+    click_on "編集", match: :first
+    # 登録されている情報が入力されていることを確認
+    assert has_field? "question_content", with: 'アルファベットの数は？'
+    assert has_field? "question_answer", with: '26'
+    fill_in "question_content", with: '日本の都道府県の数は？'
+    fill_in "question_answer", with: '47'
+    click_on "登録", match: :first
+    assert_text "Quizを更新しました"
+    # 1行目のクイズ内容が更新されていることを確認
+    within :css, 'table tbody tr:nth-child(1)' do
+      assert_selector 'td', text: '日本の都道府県の数は？'
+      assert_selector 'td', text: '47'
+      assert_selector 'td', text: '詳細'
+      assert_selector 'td', text: '編集'
+      assert_selector 'td', text: '削除'
+    end
   end
 
   test "destroying a Question" do
     visit questions_url
     page.accept_confirm do
-      click_on "Destroy", match: :first
+      click_on "削除", match: :first
     end
-
-    assert_text "Question was successfully destroyed"
+    assert_text "Quizを削除しました"
   end
 end
