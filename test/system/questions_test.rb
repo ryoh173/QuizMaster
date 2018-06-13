@@ -14,13 +14,13 @@ class QuestionsTest < ApplicationSystemTestCase
     visit questions_url
     click_on "クイズ作成"
     fill_in "question_content", with: '問題2'
-    fill_in "question_answer", with: '回答2'
+    fill_in "question_answer", with: '2'
     click_on "登録", match: :first
     assert_text "Quizを作成しました"
     # 2行目に作成されたクイズの情報が表示されていることを確認
     within :css, 'table tbody tr:nth-child(2)' do
       assert_selector 'td', text: '問題2'
-      assert_selector 'td', text: '回答2'
+      assert_selector 'td', text: '2'
       assert_selector 'td', text: '詳細'
       assert_selector 'td', text: '編集'
       assert_selector 'td', text: '削除'

@@ -16,6 +16,10 @@ class QuestionTest < ActiveSupport::TestCase
     assert q.invalid?
     q = Question.new(content: '', answer: '')
     assert q.invalid?
+    q = Question.new(content: 'テスト', answer: '＠＠＠')
+    assert q.invalid?
+    q = Question.new(content: 'テスト123', answer: '＠＠＠abc')
+    assert q.invalid?
   end
   
   test "is_correct?" do

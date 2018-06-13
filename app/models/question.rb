@@ -1,7 +1,7 @@
 class Question < ApplicationRecord
 
   validates :content, presence: true
-  validates :answer, presence: true
+  validates :answer, presence: true, format: { with: /\A\w+\z/ }
 
   def is_correct?(form_answer, id)
     # 数字が入力されても単語として判定可能にする
